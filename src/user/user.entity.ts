@@ -19,6 +19,7 @@ export const base = {
 export class User extends BaseAttribute {
   username: string;
   email: string;
+  isDelete: boolean;
 }
 
 export const userModels = new EntitySchema<User>({
@@ -28,5 +29,11 @@ export const userModels = new EntitySchema<User>({
     ...base,
     username: { type: 'string', unique: true, nullable: false, length: 225 },
     email: { type: 'string', unique: true, nullable: false, length: 225 },
+    isDelete: {
+      type: 'boolean',
+      unique: false,
+      nullable: false,
+      default: false,
+    },
   },
 });

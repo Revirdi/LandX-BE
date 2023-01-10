@@ -14,8 +14,8 @@ export default {
     console.log(message);
   },
   getDriver: PostgreSqlDriver,
-  entities: ['./dist/user/user.entity.js'],
-  entitiesTs: ['./src/user/user.entity.ts'],
+  entities: ['**/*.entity.js'],
+  entitiesTs: ['**/*.entity.ts'],
   migration: {
     path: __dirname + '/migrations',
     glob: '!(*.d).{js,ts}',

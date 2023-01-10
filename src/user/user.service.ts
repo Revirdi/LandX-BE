@@ -17,34 +17,25 @@ export class UserService {
     return create;
   }
   async getAllUser() {
-    const orm = await this.orm.em.getRepository<User>(userModels);
-    const results = orm.findAll();
-    return results;
+    // const orm = await this.orm.em.getRepository<User>(userModels);
+    // const results = orm.findAll();
+    // return results;
+    const res = await this.em.qb(User).select('*').where({ isDelete: false });
+    return res;
   }
   async updateUser(body: bodyDTO) {
     const { id, username, email } = body;
-    // const orm = await this.orm.em.getRepository<User>(userModels);
-    // const data = await orm.findOne(id);
-    // wrap(data).assign(
-    //   {
-    //     username,
-    //     email,
-    //   },
-    //   { updateByPrimaryKey: false },
-    // );
-    // await this.orm.em.persistAndFlush(data);
+
     const res1 = await this.em
       .qb(User)
       .update({ username, email })
       .where({ id });
 
-    // const qb = await this.em.createQueryBuilder(User);
-    // qb.update({
-    //   username,
-    //   email,
-    // }).where({
-    //   id,
-    // });
-    console.log(res1);
+    return res1.affectedRows > 0;
+  }
+
+  async deleteUser(id: number) {
+    const res = await this.em.qb(User).update({ isDelete: true }).where({ id });
+    return res.affectedRows > 0;
   }
 }
