@@ -1,4 +1,4 @@
-import { Entity, EntitySchema, Property } from '@mikro-orm/core';
+import { EntitySchema } from '@mikro-orm/core';
 
 export class BaseAttribute {
   id?: number;

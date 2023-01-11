@@ -22,10 +22,12 @@ export class UserController {
   ): Promise<Response> {
     return res.json(await this.userService.addUser(body));
   }
+
   @Get()
   async getAllUser(@Res() res: Response): Promise<Response> {
     return res.json(await this.userService.getAllUser());
   }
+
   @Put()
   async updateUser(
     @Body() body: bodyDTO,

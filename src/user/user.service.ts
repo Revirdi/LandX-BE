@@ -1,7 +1,7 @@
 import { EntityManager } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
 import { User, userModels } from './user.entity';
-import { MikroORM, wrap } from '@mikro-orm/core';
+import { MikroORM } from '@mikro-orm/core';
 import { bodyDTO } from './user.dto';
 
 @Injectable()
@@ -17,9 +17,6 @@ export class UserService {
     return create;
   }
   async getAllUser() {
-    // const orm = await this.orm.em.getRepository<User>(userModels);
-    // const results = orm.findAll();
-    // return results;
     const res = await this.em.qb(User).select('*').where({ isDelete: false });
     return res;
   }
