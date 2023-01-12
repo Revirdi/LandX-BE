@@ -10,16 +10,19 @@ export class UserService {
     private readonly orm: MikroORM,
     private readonly em: EntityManager,
   ) {}
+
   async addUser(body: bodyDTO) {
     const orm = await this.orm.em.getRepository<User>(userModels);
     const create = orm.create({ ...body });
     await this.orm.em.persistAndFlush(create);
     return create;
   }
+
   async getAllUser() {
-    const res = await this.em.qb(User).select('*').where({ isDelete: false });
+    const res = await this.em.qb(User).select('*');
     return res;
   }
+
   async updateUser(body: bodyDTO) {
     const { id, username, email } = body;
 
@@ -32,7 +35,8 @@ export class UserService {
   }
 
   async deleteUser(id: number) {
-    const res = await this.em.qb(User).update({ isDelete: true }).where({ id });
-    return res.affectedRows > 0;
+    const orm = await this.orm.em.getRepository<User>(userModels);
+    const find = await orm.findOne(id);
+    return await orm.removeAndFlush(find);
   }
 }

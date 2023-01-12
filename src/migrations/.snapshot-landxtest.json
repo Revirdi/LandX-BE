@@ -1,7 +1,5 @@
 {
-  "namespaces": [
-    "public"
-  ],
+  "namespaces": ["public"],
   "name": "public",
   "tables": [
     {
@@ -54,34 +52,20 @@
           "nullable": false,
           "length": 225,
           "mappedType": "string"
-        },
-        "is_delete": {
-          "name": "is_delete",
-          "type": "boolean",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "default": "false",
-          "mappedType": "boolean"
         }
       },
       "name": "users",
       "schema": "public",
       "indexes": [
         {
-          "columnNames": [
-            "username"
-          ],
+          "columnNames": ["username"],
           "composite": false,
           "keyName": "users_username_unique",
           "primary": false,
           "unique": true
         },
         {
-          "columnNames": [
-            "email"
-          ],
+          "columnNames": ["email"],
           "composite": false,
           "keyName": "users_email_unique",
           "primary": false,
@@ -89,9 +73,7 @@
         },
         {
           "keyName": "users_pkey",
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": ["id"],
           "composite": false,
           "primary": true,
           "unique": true
